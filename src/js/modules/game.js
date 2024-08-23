@@ -23,6 +23,7 @@ export class Game {
         this.food = new Food(this.context, this.positionsCount, this.positionsSize);
         this.snake = new Snake(this.context, this.positionsCount, this.positionsSize);
 
+        this.food.setNewFoodPosition();
         setInterval(this.gameProcess.bind(this), 100);
     }
 

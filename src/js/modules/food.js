@@ -1,3 +1,5 @@
+import {NumberUtils} from "../utils/number-utils.js";
+
 export class Food {
 
     foodRadius = null;
@@ -16,6 +18,13 @@ export class Food {
         this.positionsSize = positionsSize;
 
         this.foodRadius = this.positionsSize / 2;
+    }
+
+    setNewFoodPosition() {
+        this.foodPosition = {
+            x: NumberUtils.getRandomInt(1, this.positionsCount),
+            y: NumberUtils.getRandomInt(1, this.positionsCount),
+        }
     }
 
     showFood() {
