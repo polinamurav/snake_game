@@ -7,12 +7,16 @@ export class Game {
     context = null;
     positionsCount = null;
     positionsSize = null;
+    scoreElement = null;
+    score = 0;
 
     constructor(context, settings) {
         this.context = context;
 
         this.positionsCount = settings.positionsCount;
         this.positionsSize = settings.positionsSize;
+
+        this.scoreElement = document.getElementById('score');
 
         document.getElementById('start').onclick = () => {
             this.startGame();
@@ -32,7 +36,14 @@ export class Game {
 
         this.showGrid();
         this.food.showFood();
-        this.snake.showSnake();
+        let result = this.snake.showSnake(this.food.foodPosition);
+        if (result) {
+            if (result.gotFood) {
+                this.score += 1;
+                this.scoreElement.innerText = this.score;
+                this.food.setNewFoodPosition();
+            }
+        }
     }
 
     showGrid() {

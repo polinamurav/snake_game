@@ -31,7 +31,11 @@ export class Snake {
         })
     }
 
-    showSnake() {
+    showSnake(foodPosition) {
+        let result = {
+            gotFood: false,
+        };
+
         for (let i = 0; i < this.snake.length; i++) {
             this.context.fillStyle = 'black';
             this.context.beginPath();
@@ -45,7 +49,11 @@ export class Snake {
             y: this.snake[0].y
         }
 
-        this.snake.pop(); //удаляем последний элемент из массива, чтобы нарисовать новое местоположение
+        if (foodPosition && foodPosition.x === newHeadPosition.x && foodPosition.y === newHeadPosition.y) {
+            result.gotFood = true;
+        } else {
+            this.snake.pop(); //удаляем последний элемент из массива, чтобы нарисовать новое местоположение
+        }
 
         if (this.currentDirection === 'left') {
             if (newHeadPosition.x === 1) {
@@ -74,6 +82,8 @@ export class Snake {
         }
 
         this.snake.unshift(newHeadPosition); //добавляет элемент в начало массива
+
+        return result;
     }
 
 }
