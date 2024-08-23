@@ -38,12 +38,18 @@ export class Game {
         this.food.showFood();
         let result = this.snake.showSnake(this.food.foodPosition);
         if (result) {
-            if (result.gotFood) {
+            if (result.collision) {
+                this.endGame();
+            } else if (result.gotFood) {
                 this.score += 1;
                 this.scoreElement.innerText = this.score;
                 this.food.setNewFoodPosition();
             }
         }
+    }
+
+    endGame() {
+
     }
 
     showGrid() {

@@ -34,6 +34,7 @@ export class Snake {
     showSnake(foodPosition) {
         let result = {
             gotFood: false,
+            collision: false,
         };
 
         for (let i = 0; i < this.snake.length; i++) {
@@ -81,9 +82,22 @@ export class Snake {
             }
         }
 
-        this.snake.unshift(newHeadPosition); //добавляет элемент в начало массива
+        if (!this.checkNewHeadPositionForCollision(newHeadPosition)) {
+            this.snake.unshift(newHeadPosition); //добавляет элемент в начало массива
+        } else {
+            result.collision = true;
+        }
 
         return result;
+    }
+
+    checkNewHeadPositionForCollision(newHeadPosition) {
+        for (let i = 0; i < this.snake.length; i++) {
+            if (newHeadPosition.x === this.snake[i].x && newHeadPosition.y === this.snake[i].y) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
