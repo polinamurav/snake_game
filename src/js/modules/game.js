@@ -39,7 +39,7 @@ export class Game {
     gameProcess() {
         this.context.clearRect(0, 0, this.positionsCount * this.positionsSize, this.positionsCount * this.positionsSize); // очищаем canvas для заново отрисовки
 
-        this.showGrid();
+        // this.showGrid();
         this.food.showFood();
         let result = this.snake.showSnake(this.food.foodPosition);
         if (result) {
