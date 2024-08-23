@@ -1,4 +1,5 @@
 import {Snake} from "./snake.js";
+import {Food} from "./food.js";
 
 export class Game {
 
@@ -19,6 +20,7 @@ export class Game {
     }
 
     startGame() {
+        this.food = new Food(this.context, this.positionsCount, this.positionsSize);
         this.snake = new Snake(this.context, this.positionsCount, this.positionsSize);
 
         setInterval(this.gameProcess.bind(this), 100);
@@ -28,6 +30,7 @@ export class Game {
         this.context.clearRect(0, 0, this.positionsCount * this.positionsSize, this.positionsCount * this.positionsSize); // очищаем canvas для заново отрисовки
 
         this.showGrid();
+        this.food.showFood();
         this.snake.showSnake();
     }
 
